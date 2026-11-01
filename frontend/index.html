@@ -24,7 +24,61 @@
 @media(max-width:850px){.app{grid-template-columns:76px minmax(0,1fr)}.sidebar{padding:22px 9px 16px;align-items:center}.brand{padding:0 0 30px}.brand-name,.workspace-label,.nav-item .nav-label,.help-card,.profile-copy{display:none}.nav{width:100%}.nav-item{justify-content:center;padding:12px 0}.profile{padding:18px 0 0}.hero-art{width:90px;height:90px;border-radius:25px}.hero-art .pet{font-size:49px}.content{padding-top:32px}}
 @media(max-width:560px){.app{display:block}.sidebar{position:fixed;z-index:5;left:0;right:0;bottom:0;top:auto;width:100%;height:66px;min-height:0;display:block;padding:7px 10px calc(7px + env(safe-area-inset-bottom,0));border-right:0;border-top:1px solid var(--line)}.brand,.workspace-label,.sidebar-bottom{display:none}.nav{display:flex;justify-content:space-around;gap:3px}.nav-item{width:auto;min-width:58px;display:flex;flex-direction:column;gap:3px;padding:5px 9px;font-size:9px}.nav-item .nav-label{display:block}.nav-item svg{width:17px;height:17px}.main{min-height:calc(100vh - 66px);padding-bottom:66px}.topbar{height:60px;padding:0 17px}.online{font-size:10px;padding:7px 9px}.content{padding:27px 15px 18px}.hero{margin-bottom:22px}.hero h1{font-size:29px;letter-spacing:-1.2px}.hero p{font-size:12px}.hero-art{width:68px;height:68px;border-radius:20px}.hero-art .pet{font-size:37px}.sparkle{font-size:12px;right:9px;top:7px}.suggestions{grid-template-columns:1fr;gap:8px;margin-bottom:17px}.suggestion{min-height:0;display:grid;grid-template-columns:30px 1fr;column-gap:10px;align-items:center;padding:10px 12px}.suggestion .s-icon{grid-row:span 2;margin:0}.suggestion strong{margin:0 0 3px}.suggestion small{font-size:10px}.chat-panel{min-height:280px}.chat{padding:14px;max-height:38vh}.chat-head{padding:12px 13px}.composer-wrap{padding:0 10px 10px}.msg{max-width:90%;font-size:12px}.footer{font-size:9px;padding:14px 4px 0}.disclaimer{font-size:8px}.icon-btn{width:32px;height:32px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
-</style>
+
+/* PetNova saved workspace */
+[hidden]{display:none!important}
+.content.workspace-mode .hero,.content.workspace-mode .quick-label,.content.workspace-mode .suggestions,.content.workspace-mode .chat-panel,.content.workspace-mode .footer{display:none}
+.workspace-view{width:100%;animation:workspaceIn .22s ease}
+@keyframes workspaceIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.workspace-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:7px 0 23px}
+.workspace-heading h2{font:800 clamp(24px,3vw,32px)/1.2 Manrope,sans-serif;letter-spacing:-1px;margin:0 0 8px}
+.workspace-heading p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.primary-btn{border:0;border-radius:10px;background:var(--green);color:#fff;font-weight:700;font-size:12px;padding:11px 14px;white-space:nowrap}
+.primary-btn:hover{background:var(--green-dark)}
+.secondary-btn,.danger-btn{border:1px solid var(--line);border-radius:9px;background:#fff;color:#536258;padding:8px 10px;font-size:11px;font-weight:600}
+.danger-btn{color:#b94b45;border-color:#f0d8d6}
+.workspace-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.data-card{border:1px solid var(--line);border-radius:15px;background:#fff;padding:17px;min-width:0}
+.data-card h3{font:700 14px Manrope,sans-serif;margin:0 0 7px}
+.data-card p{font-size:11px;color:var(--muted);line-height:1.6;margin:0}
+.data-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.pet-emoji{width:42px;height:42px;border-radius:13px;background:var(--mint);display:grid;place-items:center;font-size:22px;margin-bottom:12px}
+.meta-line{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0}
+.meta-pill{background:#f3f6f3;border-radius:999px;padding:5px 8px;color:#6c7a70;font-size:10px}
+.card-actions{display:flex;gap:7px;margin-top:14px;flex-wrap:wrap}
+.empty-state{grid-column:1/-1;text-align:center;border:1px dashed #dbe5dc;border-radius:15px;padding:35px 20px;background:#fbfdfb}
+.empty-state .empty-emoji{font-size:30px;margin-bottom:10px}
+.empty-state strong{display:block;font:700 14px Manrope,sans-serif;margin-bottom:7px}
+.empty-state p{font-size:11px;line-height:1.7;color:var(--muted);max-width:340px;margin:0 auto}
+.inline-form{background:#fff;border:1px solid #dce8de;border-radius:15px;padding:17px;margin-bottom:15px}
+.inline-form h3{font:700 14px Manrope,sans-serif;margin:0 0 14px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.form-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:10px;font-weight:700;color:#657369}
+.form-field input,.form-field select,.form-field textarea{width:100%;min-width:0;border:1px solid #e0e8e1;border-radius:9px;background:#fbfcfb;padding:10px;font:12px 'DM Sans',sans-serif;color:var(--ink)}
+.form-field textarea{resize:vertical;min-height:65px}
+.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:13px}
+.list-stack{display:grid;gap:10px}
+.record-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 15px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.record-main{min-width:0}.record-main h3{font:700 12px Manrope,sans-serif;margin:0 0 5px;overflow-wrap:anywhere}.record-main p{font-size:11px;line-height:1.6;color:var(--muted);margin:6px 0 0;overflow-wrap:anywhere}
+.record-topline{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+.status-pill{font-size:9px;border-radius:999px;padding:4px 7px;background:#e7f4eb;color:#32714d;font-weight:700}
+.status-pill.done{background:#f0f2f0;color:#818a82}
+.auth-backdrop{position:fixed;inset:0;background:#13261dcc;backdrop-filter:blur(5px);z-index:30;display:grid;place-items:center;padding:18px}
+.auth-card{width:min(100%,420px);background:#fff;border-radius:20px;padding:25px;box-shadow:0 22px 80px #0e261f45}
+.auth-brand{display:flex;align-items:center;gap:9px;margin-bottom:18px}
+.auth-brand .brand-mark{width:34px;height:34px;border-radius:11px}
+.auth-card h2{font:800 24px Manrope,sans-serif;letter-spacing:-.7px;margin:0 0 8px}
+.auth-card>p{font-size:12px;color:var(--muted);line-height:1.7;margin:0 0 18px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f2f5f2;border-radius:10px;padding:4px;margin-bottom:16px}
+.auth-tab{border:0;background:transparent;border-radius:8px;padding:9px;font-size:11px;font-weight:700;color:#738076}
+.auth-tab.active{background:#fff;color:var(--green);box-shadow:0 1px 4px #152d1c0c}
+.auth-error{font-size:11px;color:#b64242;line-height:1.5;margin:10px 0 0}
+.auth-foot{font-size:10px;line-height:1.6;color:#9aa39b;margin-top:14px}
+.account-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-size:10px;font-weight:700;color:var(--green);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:560px){.workspace-heading{margin-top:0}.workspace-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.workspace-heading h2{font-size:25px}.data-card{padding:15px}.auth-card{padding:21px}}
+\n</style>
 </head>
 <body>
 <div class="app">
@@ -37,9 +91,9 @@
       <div class="workspace-label">Workspace</div>
       <nav class="nav">
         <button class="nav-item active" type="button" aria-current="page" title="AI Assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a7 7 0 0 0-4 12.7V19h8v-3.3A7 7 0 0 0 12 3Z"/><path d="M9 22h6M9 16h6M12 7v4m-2-2h4"/></svg><span class="nav-label">AI Assistant</span></button>
-        <button class="nav-item" type="button" data-coming="Pet profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M5 20v-2a7 7 0 0 1 14 0v2Z"/><path d="M5 5 3.5 6.5M19 5l1.5 1.5"/></svg><span class="nav-label">My pets</span></button>
-        <button class="nav-item" type="button" data-coming="Health records"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v14H4V3Z"/><path d="M8 3v5h8V3M8 14h8M8 17h5"/></svg><span class="nav-label">Health records</span></button>
-        <button class="nav-item" type="button" data-coming="Reminders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg><span class="nav-label">Reminders</span></button>
+        <button class="nav-item" type="button" data-view="pets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M5 20v-2a7 7 0 0 1 14 0v2Z"/><path d="M5 5 3.5 6.5M19 5l1.5 1.5"/></svg><span class="nav-label">My pets</span></button>
+        <button class="nav-item" type="button" data-view="records"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v14H4V3Z"/><path d="M8 3v5h8V3M8 14h8M8 17h5"/></svg><span class="nav-label">Health records</span></button>
+        <button class="nav-item" type="button" data-view="reminders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg><span class="nav-label">Reminders</span></button>
       </nav>
     </div>
     <div class="sidebar-bottom">
@@ -51,7 +105,7 @@
   <main class="main">
     <header class="topbar">
       <div class="crumb">Workspace <span aria-hidden="true">/</span> <strong>AI Assistant</strong></div>
-      <div class="top-actions"><div class="online"><span class="dot"></span><span>Assistant ready</span></div><button class="icon-btn" id="newChatTop" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button></div>
+      <div class="top-actions"><button class="account-chip" id="accountButton" type="button">Sign in</button><div class="online"><span class="dot"></span><span>Assistant ready</span></div><button class="icon-btn" id="newChatTop" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button></div>
     </header>
     <section class="content">
       <div class="hero">
@@ -63,7 +117,7 @@
         <div class="hero-art" aria-hidden="true"><span class="sparkle">✦</span><span class="pet">🐕</span></div>
       </div>
 
-      <div class="quick-label">A good place to start <span>· Pick a topic or ask anything</span></div>
+      <section id="workspaceView" class="workspace-view" hidden aria-live="polite"></section>\n\n      <div class="quick-label">A good place to start <span>· Pick a topic or ask anything</span></div>
       <div class="suggestions">
         <button class="suggestion" type="button" data-prompt="How often should I feed my puppy?"><span class="s-icon">🥣</span><strong>Food & nutrition</strong><small>Meals, portions and healthy habits</small></button>
         <button class="suggestion" type="button" data-prompt="What should I know about grooming my pet at home?"><span class="s-icon">🫧</span><strong>Grooming & hygiene</strong><small>Coat care, bathing and nail trims</small></button>
@@ -90,7 +144,26 @@
     </section>
   </main>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="auth-backdrop" id="authBackdrop" hidden>
+  <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-brand"><div class="brand-mark"><span>♥</span></div><div class="brand-name">Pet<span>Nova</span></div></div>
+    <h2 id="authTitle">Your pet's little world.</h2>
+    <p>Sign in to save pet profiles, keep health notes together, and stay on top of care reminders.</p>
+    <div class="auth-tabs"><button class="auth-tab active" type="button" data-auth-mode="login">Sign in</button><button class="auth-tab" type="button" data-auth-mode="register">Create account</button></div>
+    <form id="authForm">
+      <div class="form-grid">
+        <div class="form-field full" id="authNameField" hidden><label for="authName">Your name</label><input id="authName" autocomplete="name" maxlength="80" /></div>
+        <div class="form-field full"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" required maxlength="254" /></div>
+        <div class="form-field full"><label for="authPassword">Password <span id="passwordHint">(10 characters minimum)</span></label><input id="authPassword" type="password" autocomplete="current-password" required minlength="10" maxlength="128" /></div>
+      </div>
+      <p class="auth-error" id="authError" hidden></p>
+      <button class="primary-btn" id="authSubmit" type="submit" style="width:100%;margin-top:15px">Sign in to PetNova</button>
+    </form>
+    <div class="auth-foot">Your saved records are private to your account. For urgent symptoms, contact a veterinarian directly.</div>
+  </section>
+</div>
+\n<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
   // Keep the existing FastAPI chat endpoint. Override this on a deployment if needed.
   const API_BASE_URL = window.VETGPT_API_BASE_URL || 'https://vetgpt-backend.onrender.com';
@@ -173,6 +246,237 @@
   document.querySelectorAll('[data-coming]').forEach((button) => {
     button.addEventListener('click', () => showToast(button.dataset.coming + ' is planned for a future update.'));
   });
-</script>
+
+  // PetNova account + saved care workspace (separate from the existing /chat flow).
+  const workspaceView = document.getElementById('workspaceView');
+  const contentRoot = document.querySelector('.content');
+  const authBackdrop = document.getElementById('authBackdrop');
+  const accountButton = document.getElementById('accountButton');
+  const authForm = document.getElementById('authForm');
+  const authError = document.getElementById('authError');
+  let authMode = 'login';
+  let activeView = 'chat';
+  let sessionToken = sessionStorage.getItem('petnova_token') || '';
+  let sessionUser = null;
+  let cachedPets = [];
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  }
+  async function api(path, options = {}) {
+    const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+    if (sessionToken) headers.Authorization = 'Bearer ' + sessionToken;
+    const response = await fetch(API_BASE_URL + path, { ...options, headers });
+    let data = {};
+    try { data = await response.json(); } catch (_) {}
+    if (!response.ok) throw new Error(data.detail || 'Request failed (' + response.status + ').');
+    return data;
+  }
+  function showAuth(mode = 'login') {
+    setAuthMode(mode);
+    authError.hidden = true;
+    authBackdrop.hidden = false;
+    setTimeout(() => document.getElementById('authEmail').focus(), 0);
+  }
+  function hideAuth() { authBackdrop.hidden = true; }
+  function setAuthMode(mode) {
+    authMode = mode;
+    document.querySelectorAll('[data-auth-mode]').forEach(el => el.classList.toggle('active', el.dataset.authMode === mode));
+    document.getElementById('authNameField').hidden = mode !== 'register';
+    document.getElementById('authName').required = mode === 'register';
+    document.getElementById('authTitle').textContent = mode === 'register' ? 'Make room for your best friend.' : "Your pet's little world.";
+    document.getElementById('authPassword').autocomplete = mode === 'register' ? 'new-password' : 'current-password';
+    document.getElementById('authSubmit').textContent = mode === 'register' ? 'Create my account' : 'Sign in to PetNova';
+    authError.hidden = true;
+  }
+  function updateAccountButton() {
+    accountButton.textContent = sessionUser ? sessionUser.name : 'Sign in';
+    accountButton.title = sessionUser ? sessionUser.email + ' — click to sign out' : 'Sign in or create an account';
+  }
+  async function restoreSession() {
+    if (!sessionToken) { updateAccountButton(); return; }
+    try { const data = await api('/auth/me'); sessionUser = data.user; }
+    catch (_) { sessionToken = ''; sessionStorage.removeItem('petnova_token'); sessionUser = null; }
+    updateAccountButton();
+  }
+  authForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    authError.hidden = true;
+    const submit = document.getElementById('authSubmit');
+    submit.disabled = true;
+    submit.textContent = authMode === 'register' ? 'Creating account…' : 'Signing in…';
+    const body = { email: document.getElementById('authEmail').value.trim(), password: document.getElementById('authPassword').value };
+    if (authMode === 'register') body.name = document.getElementById('authName').value.trim();
+    try {
+      const data = await api(authMode === 'register' ? '/auth/register' : '/auth/login', { method: 'POST', body: JSON.stringify(body) });
+      sessionToken = data.token;
+      sessionUser = data.user;
+      sessionStorage.setItem('petnova_token', sessionToken);
+      updateAccountButton();
+      hideAuth();
+      showToast(authMode === 'register' ? 'Welcome to PetNova!' : 'Welcome back!');
+      if (activeView !== 'chat') await renderWorkspace(activeView);
+    } catch (error) {
+      authError.textContent = error.message;
+      authError.hidden = false;
+    } finally {
+      submit.disabled = false;
+      submit.textContent = authMode === 'register' ? 'Create my account' : 'Sign in to PetNova';
+    }
+  });
+  document.querySelectorAll('[data-auth-mode]').forEach(el => el.addEventListener('click', () => setAuthMode(el.dataset.authMode)));
+  accountButton.addEventListener('click', () => {
+    if (!sessionUser) return showAuth('login');
+    if (confirm('Sign out of PetNova on this device?')) {
+      sessionToken = ''; sessionUser = null; sessionStorage.removeItem('petnova_token');
+      updateAccountButton(); showToast('You have signed out.');
+      if (activeView !== 'chat') showAuth('login');
+    }
+  });
+  function setActiveView(view) {
+    activeView = view;
+    contentRoot.classList.toggle('workspace-mode', view !== 'chat');
+    workspaceView.hidden = view === 'chat';
+    document.querySelectorAll('.nav-item').forEach(el => {
+      const active = (view === 'chat' && !el.dataset.view) || el.dataset.view === view;
+      el.classList.toggle('active', active);
+      if (active) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
+    });
+    const names = {chat:'AI Assistant',pets:'My pets',records:'Health records',reminders:'Reminders'};
+    document.querySelector('.crumb').innerHTML = 'Workspace <span aria-hidden="true">/</span> <strong>' + names[view] + '</strong>';
+  }
+  function emptyState(emoji, title, detail) {
+    return '<div class="empty-state"><div class="empty-emoji">' + emoji + '</div><strong>' + title + '</strong><p>' + detail + '</p></div>';
+  }
+  function heading(title, subtitle, actionLabel, action) {
+    return '<div class="workspace-heading"><div><h2>' + title + '</h2><p>' + subtitle + '</p></div><button class="primary-btn" type="button" data-action="' + action + '">' + actionLabel + '</button></div>';
+  }
+  function petOptions(selected = '') {
+    return '<option value="">No specific pet</option>' + cachedPets.map(p => '<option value="' + p.id + '" ' + (String(p.id) === String(selected) ? 'selected' : '') + '>' + escapeHTML(p.name) + '</option>').join('');
+  }
+  function renderPetForm() {
+    return '<form class="inline-form" id="petForm"><h3>Add a pet to your family</h3><div class="form-grid">' +
+      '<div class="form-field"><label for="petName">Pet name *</label><input id="petName" name="name" required maxlength="80" placeholder="e.g. Milo"></div>' +
+      '<div class="form-field"><label for="petSpecies">Species *</label><select id="petSpecies" name="species" required><option value="Dog">Dog</option><option value="Cat">Cat</option><option value="Bird">Bird</option><option value="Rabbit">Rabbit</option><option value="Other">Other</option></select></div>' +
+      '<div class="form-field"><label for="petBreed">Breed</label><input id="petBreed" name="breed" maxlength="80" placeholder="Optional"></div>' +
+      '<div class="form-field"><label for="petBirth">Birthday</label><input id="petBirth" name="birth_date" type="date"></div>' +
+      '<div class="form-field"><label for="petWeight">Weight (kg)</label><input id="petWeight" name="weight" type="number" min=".01" max="500" step=".01" placeholder="Optional"></div>' +
+      '<div class="form-field full"><label for="petNotes">Notes</label><textarea id="petNotes" name="notes" maxlength="2000" placeholder="Personality, dietary notes, or anything useful"></textarea></div></div><div class="form-actions"><button class="secondary-btn" type="button" data-action="cancel-form">Cancel</button><button class="primary-btn" type="submit">Save pet</button></div></form>';
+  }
+  function renderRecordForm() {
+    return '<form class="inline-form" id="recordForm"><h3>Add a health record</h3><div class="form-grid">' +
+      '<div class="form-field"><label for="recordPet">Pet *</label><select id="recordPet" name="pet_id" required>' + cachedPets.map(p => '<option value="' + p.id + '">' + escapeHTML(p.name) + '</option>').join('') + '</select></div>' +
+      '<div class="form-field"><label for="recordType">Record type</label><select id="recordType" name="record_type"><option>Vaccination</option><option>Vet visit</option><option>Medication</option><option>Allergy</option><option>Weight</option><option>General</option></select></div>' +
+      '<div class="form-field"><label for="recordTitle">Title *</label><input id="recordTitle" name="title" required maxlength="120" placeholder="e.g. Annual checkup"></div>' +
+      '<div class="form-field"><label for="recordDate">Date *</label><input id="recordDate" name="record_date" type="date" required value="' + new Date().toISOString().slice(0,10) + '"></div>' +
+      '<div class="form-field full"><label for="recordNotes">Notes</label><textarea id="recordNotes" name="notes" maxlength="3000" placeholder="Details, vet advice, or follow-up notes"></textarea></div></div><div class="form-actions"><button class="secondary-btn" type="button" data-action="cancel-form">Cancel</button><button class="primary-btn" type="submit">Save record</button></div></form>';
+  }
+  function renderReminderForm() {
+    return '<form class="inline-form" id="reminderForm"><h3>Create a care reminder</h3><div class="form-grid">' +
+      '<div class="form-field"><label for="reminderTitle">Reminder *</label><input id="reminderTitle" name="title" required maxlength="120" placeholder="e.g. Flea treatment"></div>' +
+      '<div class="form-field"><label for="reminderPet">For which pet?</label><select id="reminderPet" name="pet_id">' + petOptions() + '</select></div>' +
+      '<div class="form-field"><label for="reminderDue">Due date & time *</label><input id="reminderDue" name="due_at" type="datetime-local" required value="' + new Date(Date.now()+86400000).toISOString().slice(0,16) + '"></div>' +
+      '<div class="form-field"><label for="reminderNotes">Notes</label><input id="reminderNotes" name="notes" maxlength="1000" placeholder="Optional details"></div></div><div class="form-actions"><button class="secondary-btn" type="button" data-action="cancel-form">Cancel</button><button class="primary-btn" type="submit">Save reminder</button></div></form>';
+  }
+  function renderPetCards(pets) {
+    if (!pets.length) return emptyState('🐾','No pets added yet','Create your first pet profile to keep their details, health notes, and care reminders together.');
+    return '<div class="workspace-grid">' + pets.map(p => '<article class="data-card"><div class="pet-emoji">' + ({Dog:'🐕',Cat:'🐈',Bird:'🦜',Rabbit:'🐇',Other:'🐾'}[p.species] || '🐾') + '</div><div class="data-card-head"><div><h3>' + escapeHTML(p.name) + '</h3><p>' + escapeHTML([p.breed,p.species].filter(Boolean).join(' · ')) + '</p></div></div><div class="meta-line">' + (p.birth_date ? '<span class="meta-pill">🎂 ' + escapeHTML(p.birth_date) + '</span>' : '') + (p.weight ? '<span class="meta-pill">⚖ ' + escapeHTML(p.weight) + ' kg</span>' : '') + '</div>' + (p.notes ? '<p>' + escapeHTML(p.notes) + '</p>' : '<p>No extra notes yet.</p>') + '<div class="card-actions"><button class="secondary-btn" data-action="pet-records" data-id="' + p.id + '">Health records</button><button class="danger-btn" data-action="delete-pet" data-id="' + p.id + '">Delete</button></div></article>').join('') + '</div>';
+  }
+  function renderRecords(records) {
+    if (!cachedPets.length) return emptyState('📋','Add a pet first','Health records are linked to a pet profile. Add your pet before recording visits, vaccinations, or medication notes.');
+    if (!records.length) return emptyState('🩺','No health records yet','Keep vaccination dates, vet visits, medication notes, and other care history in one place.');
+    return '<div class="list-stack">' + records.map(r => '<article class="record-card"><div class="record-main"><div class="record-topline"><span class="status-pill">' + escapeHTML(r.record_type) + '</span><span class="meta-pill">' + escapeHTML(r.record_date) + '</span></div><h3>' + escapeHTML(r.title) + ' · ' + escapeHTML(r.pet_name) + '</h3>' + (r.notes ? '<p>' + escapeHTML(r.notes) + '</p>' : '') + '</div><button class="danger-btn" data-action="delete-record" data-id="' + r.id + '">Delete</button></article>').join('') + '</div>';
+  }
+  function renderReminders(reminders) {
+    if (!reminders.length) return emptyState('🗓️','Nothing on the calendar yet','Add reminders for grooming, medication, vaccinations, or the next vet appointment.');
+    return '<div class="list-stack">' + reminders.map(r => '<article class="record-card"><div class="record-main"><div class="record-topline"><span class="status-pill ' + (r.completed ? 'done' : '') + '">' + (r.completed ? 'Completed' : 'Upcoming') + '</span><span class="meta-pill">' + escapeHTML((r.due_at || '').replace('T',' ')) + '</span></div><h3>' + escapeHTML(r.title) + (r.pet_name ? ' · ' + escapeHTML(r.pet_name) : '') + '</h3>' + (r.notes ? '<p>' + escapeHTML(r.notes) + '</p>' : '') + '</div><div class="card-actions" style="margin-top:0"><button class="secondary-btn" data-action="toggle-reminder" data-id="' + r.id + '" data-completed="' + (!r.completed) + '">' + (r.completed ? 'Reopen' : 'Mark done') + '</button><button class="danger-btn" data-action="delete-reminder" data-id="' + r.id + '">Delete</button></div></article>').join('') + '</div>';
+  }
+  async function renderWorkspace(view) {
+    setActiveView(view);
+    if (!sessionUser) {
+      workspaceView.innerHTML = heading('Your care workspace','Sign in to save and manage your pet-care information.','Sign in','sign-in') + emptyState('🔐','A private space for your pets','Create a free account to save pet profiles, health records, and reminders securely to your account.');
+      return;
+    }
+    workspaceView.innerHTML = '<div class="empty-state"><div class="empty-emoji">⏳</div><strong>Loading your workspace…</strong><p>Getting your saved care details.</p></div>';
+    try {
+      cachedPets = (await api('/pets')).pets;
+      if (view === 'pets') {
+        workspaceView.innerHTML = heading('My pets','A little profile for every member of your furry (or feathered) family.','+ Add a pet','add-pet') + '<div id="formSlot"></div>' + renderPetCards(cachedPets);
+      } else if (view === 'records') {
+        const records = (await api('/health-records')).records;
+        workspaceView.innerHTML = heading('Health records','Keep important care history and vet notes together.','+ Add record','add-record') + '<div id="formSlot"></div>' + renderRecords(records);
+      } else {
+        const reminders = (await api('/reminders')).reminders;
+        workspaceView.innerHTML = heading('Care reminders','Small reminders make it easier to stay consistent with care.','+ Add reminder','add-reminder') + '<div id="formSlot"></div>' + renderReminders(reminders);
+      }
+    } catch (error) {
+      workspaceView.innerHTML = heading('Could not load this page','' + escapeHTML(error.message),'Try again','refresh') + emptyState('🌱','Let’s try that again','Check your connection and retry. Your existing chatbot remains available.');
+    }
+  }
+  document.querySelectorAll('[data-view]').forEach(el => el.addEventListener('click', () => {
+    const view = el.dataset.view;
+    renderWorkspace(view);
+    if (!sessionUser) showAuth('login');
+  }));
+  document.querySelector('.nav-item:not([data-view])').addEventListener('click', () => {
+    setActiveView('chat');
+    workspaceView.hidden = true;
+    showToast('You’re back with the AI assistant.');
+  });
+  workspaceView.addEventListener('click', async event => {
+    const btn = event.target.closest('[data-action]');
+    if (!btn) return;
+    const action = btn.dataset.action;
+    if (action === 'sign-in') return showAuth('login');
+    if (action === 'refresh') return renderWorkspace(activeView);
+    if (action === 'cancel-form') { document.getElementById('formSlot').innerHTML = ''; return; }
+    if (action === 'add-pet' || action === 'add-record' || action === 'add-reminder') {
+      if (!sessionUser) return showAuth('login');
+      if ((action === 'add-record' || action === 'add-reminder') && !cachedPets.length && action === 'add-record') {
+        showToast('Add a pet profile before adding health records.'); return;
+      }
+      const slot = document.getElementById('formSlot');
+      slot.innerHTML = action === 'add-pet' ? renderPetForm() : action === 'add-record' ? renderRecordForm() : renderReminderForm();
+      slot.scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+    try {
+      if (action === 'delete-pet' && confirm('Delete this pet and its linked health records and reminders?')) {
+        await api('/pets/' + btn.dataset.id,{method:'DELETE'}); showToast('Pet profile deleted.'); await renderWorkspace('pets');
+      } else if (action === 'pet-records') {
+        await renderWorkspace('records');
+      } else if (action === 'delete-record' && confirm('Delete this health record?')) {
+        await api('/health-records/' + btn.dataset.id,{method:'DELETE'}); showToast('Health record deleted.'); await renderWorkspace('records');
+      } else if (action === 'toggle-reminder') {
+        await api('/reminders/' + btn.dataset.id,{method:'PATCH',body:JSON.stringify({completed:btn.dataset.completed === 'true'})}); await renderWorkspace('reminders');
+      } else if (action === 'delete-reminder' && confirm('Delete this reminder?')) {
+        await api('/reminders/' + btn.dataset.id,{method:'DELETE'}); showToast('Reminder deleted.'); await renderWorkspace('reminders');
+      }
+    } catch (error) { showToast(error.message); }
+  });
+  workspaceView.addEventListener('submit', async event => {
+    event.preventDefault();
+    const form = event.target;
+    const data = Object.fromEntries(new FormData(form).entries());
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    try {
+      if (form.id === 'petForm') {
+        if (data.weight === '') delete data.weight; else if (data.weight) data.weight = Number(data.weight);
+        await api('/pets',{method:'POST',body:JSON.stringify(data)});
+        showToast('Pet profile saved!'); await renderWorkspace('pets');
+      } else if (form.id === 'recordForm') {
+        data.pet_id = Number(data.pet_id);
+        await api('/health-records',{method:'POST',body:JSON.stringify(data)});
+        showToast('Health record saved.'); await renderWorkspace('records');
+      } else if (form.id === 'reminderForm') {
+        data.pet_id = data.pet_id ? Number(data.pet_id) : null;
+        await api('/reminders',{method:'POST',body:JSON.stringify(data)});
+        showToast('Reminder saved.'); await renderWorkspace('reminders');
+      }
+    } catch (error) { showToast(error.message); submit.disabled = false; }
+  });
+  restoreSession();
+\n</script>
 </body>
 </html>
