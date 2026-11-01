@@ -20,9 +20,9 @@ from app import rag
 from app import petnova_data as petdata
 
 app = FastAPI(
-    title="VetGPT API",
-    description="AI-powered veterinary chatbot backend (RAG: LangChain + FAISS + Llama 2)",
-    version="1.0.0",
+    title="PetNova API",
+    description="PetNova AI pet-care chat and private pet-care workspace APIs",
+    version="1.1.0",
 )
 
 app.add_middleware(
