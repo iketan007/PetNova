@@ -1,0 +1,41 @@
+name: PetNova checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, petnova-pet-care-features]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile backend
+        run: python -m compileall -q backend/app
+      - name: Test account and data helpers
+        working-directory: backend
+        run: python -m unittest discover -s tests
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check inline JavaScript syntax
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          html = Path("frontend/index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r"<script>(.*?)</script>", html, re.S)
+          if not scripts:
+              raise SystemExit("No inline frontend script found")
+          Path("/tmp/petnova-inline.js").write_text("\n".join(scripts), encoding="utf-8")
+          PY
+          node --check /tmp/petnova-inline.js
