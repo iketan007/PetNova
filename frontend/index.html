@@ -8,7 +8,7 @@
 <title>PetNova — Smarter Care. Happier Pets.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,20,1;1,9..144,400..700,20,1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--bg:#f7f8fc;--surface:#fff;--ink:#17211c;--muted:#7b867f;--line:#e9ede8;--green:#256f52;--green-dark:#1d5a42;--mint:#e9f5ee;--mint-2:#f3f9f5;--peach:#fff0e5;--shadow:0 12px 34px rgba(29,55,41,.06);font-family:'DM Sans',sans-serif}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;height:100%;background:var(--bg);color:var(--ink)}body{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:252px minmax(0,1fr);max-width:1800px;margin:auto}
@@ -300,6 +300,107 @@ html,body{background:radial-gradient(ellipse at 78% 0%,#30214f 0,transparent 34%
 .auth-error{color:#ffaaa4}
 @media(max-width:560px){html,body{background:radial-gradient(ellipse at 70% 0%,#30214f 0,transparent 34%),#0b1020}.hero{background:linear-gradient(140deg,#172d35,#25203e 72%,#38233d)}}
 
+
+/* Human-touch art direction: warm paper, garden greens, and a little handmade character */
+:root{
+  color-scheme:light;
+  --bg:#f3efe5;--surface:#fbf8f0;--ink:#26352a;--muted:#77796b;--line:#e1dacb;
+  --green:#456b45;--green-dark:#2f5034;--mint:#e6eadb;--mint-2:#f0f0e4;
+  --peach:#f5dfcf;--shadow:0 12px 30px rgba(61,65,43,.08);
+  --violet:#776b87;--violet-soft:#eeebf0;--coral:#c96f53;
+  font-family:'DM Sans',sans-serif;
+}
+html,body{background:#f3efe5;color:var(--ink)}
+body{background-image:radial-gradient(#a89d8020 .7px,transparent .7px);background-size:8px 8px}
+.app{background:transparent}
+.sidebar{background:#283d30;color:#f6f0e3;border-right:0;box-shadow:7px 0 24px #263b2b12}
+.brand-name{color:#fbf4e7}
+.brand-name span{color:#d8a77e}
+.brand-mark{background:#d4a17b;color:#283d30;box-shadow:none;border-radius:13px 13px 13px 5px}
+.workspace-label{color:#b7c0ae}
+.nav-item{color:#d0d7c9;border-radius:10px 15px 10px 15px}
+.nav-item:hover{background:#ffffff0d;color:#fff8e9;transform:translateX(2px)}
+.nav-item.active{background:#e6eadb;color:#2f5034;border-color:#e6eadb;box-shadow:none}
+.nav-item.active svg{color:#456b45}
+.help-card{background:#344b39;border:1px solid #52644e;border-radius:16px 16px 16px 5px;color:#f6f0e3}
+.help-card p{color:#d0d5c8}
+.help-icon{background:#d4a17b;color:#283d30}
+.text-link{color:#e5bd91}
+.profile{border-color:#435444}
+.profile-name{color:#fbf4e7}
+.profile-sub{color:#c0c9bb}
+.avatar{background:#e8c8ae}
+.main{background:rgba(243,239,229,.94)}
+.topbar{background:rgba(243,239,229,.91);border-color:#e1dacb;backdrop-filter:blur(8px)}
+.crumb strong{color:#26352a}
+.online{background:#e8eddf;border-color:#d8dfce;color:#48644b}
+.dot{background:#6f9a5e;box-shadow:0 0 0 3px #6f9a5e20}
+.icon-btn{background:#f9f5eb;border-color:#ded7c7;color:#53634f}
+.icon-btn:hover{background:#e6eadb;border-color:#c7d1bc;color:#2f5034}
+.content{max-width:1200px}
+.eyebrow{background:#e8eadb;color:#4d6847;border:1px solid #dce0cc;border-radius:5px 14px 14px 14px;letter-spacing:.7px}
+.hero{padding:24px 24px 25px 0;position:relative}
+.hero h1{font-family:'Fraunces',Georgia,serif;font-weight:650;letter-spacing:-1.2px;line-height:1.12;font-size:clamp(34px,3.7vw,48px)}
+.hero h1 span{color:#a45f46;font-style:italic;font-weight:550}
+.hero p{font-size:14px;line-height:1.85;max-width:470px;color:#6f7466}
+.hero-art{background:#e7d4b9;border-radius:48% 42% 45% 38%;transform:rotate(5deg);box-shadow:inset -8px -8px 0 #c6ad8b30}
+.hero-art .pet{transform:rotate(-5deg);filter:none}
+.sparkle{color:#a45f46}
+.quick-label{color:#475a45;font-size:12px;letter-spacing:.1px}
+.quick-label span{color:#8b887a}
+.suggestions{gap:13px}
+.suggestion{background:#fbf8f0;border-color:#e2dac9;border-radius:8px 17px 13px 17px;box-shadow:0 3px 0 #e5ddce;min-height:105px;padding:16px;transition:transform .18s,box-shadow .18s,border-color .18s}
+.suggestion:hover{border-color:#c1c9ac;transform:translateY(-2px) rotate(-.25deg);box-shadow:0 6px 0 #ddd4c3}
+.suggestion .s-icon{background:#e4ead8;border-radius:10px 10px 10px 4px}
+.suggestion:nth-child(2) .s-icon{background:#f3dfce}
+.suggestion:nth-child(3) .s-icon{background:#e9e2ed}
+.suggestion strong{font-size:12px;color:#354734}
+.suggestion small{font-size:11px;line-height:1.55;color:#7d7c6f}
+.chat-panel{background:#fbf8f0;border-color:#e1d9c9;border-radius:7px 18px 18px 18px;box-shadow:0 5px 0 #e6dece}
+.chat-head{border-color:#ece5d8}
+.assistant-avatar{background:#e3ead8;border-radius:12px 12px 12px 4px}
+.assistant-name{color:#354734}
+.assistant-status{color:#7c806f}
+.clear-btn:hover{color:#a45f46}
+.chat{background:#fbf8f0}
+.empty-note{color:#898879}
+.msg{font-size:13px;border-radius:15px}
+.msg.user{background:#456b45;border-bottom-right-radius:4px}
+.msg.bot{background:#eee9dc;color:#3e493b;border-bottom-left-radius:4px}
+.composer{background:#f6f2e8;border-color:#dcd4c3;border-radius:12px}
+.composer:focus-within{border-color:#91a47e;box-shadow:0 0 0 3px #dce5d1}
+.composer input{font-size:13px}
+.composer input::placeholder{color:#989483}
+.send,.primary-btn{background:#456b45;border-radius:9px 12px 12px 12px}
+.send:hover,.primary-btn:hover{background:#2f5034}
+.disclaimer,.footer{color:#8c897a}
+.footer strong{color:#58674f}
+.toast{background:#283d30;border-radius:8px 13px 13px 13px}
+.workspace-heading h2,.auth-card h2{font-family:'Fraunces',Georgia,serif;font-weight:650;letter-spacing:-.5px}
+.data-card,.record-card,.inline-form{background:#fbf8f0;border-color:#e1d9c9;border-radius:9px 16px 13px 16px;box-shadow:0 3px 0 #e8e0d1}
+.pet-emoji{background:#e4ead8;border-radius:12px 12px 12px 4px}
+.meta-pill{background:#eee9dc;color:#65705c}
+.secondary-btn{background:#f6f2e8;border-color:#ded6c6;color:#53634f}
+.danger-btn{background:#fbf1e9;color:#a75c49;border-color:#ead2c3}
+.empty-state{background:#f8f4e9;border-color:#d8d0bf;border-radius:9px 18px 18px 18px}
+.form-field input,.form-field select,.form-field textarea{background:#f8f4e9;border-color:#ded6c6}
+.auth-backdrop{background:#1d3028d9}
+.auth-card{background:#fbf8f0;border-radius:8px 22px 18px 22px}
+.auth-close{background:#eee9dc;color:#53634f}
+.auth-tabs{background:#eee9dc}
+.auth-tab.active{background:#fbf8f0;color:#456b45;box-shadow:0 2px 4px #263b2b12}
+.account-chip{background:#f8f4e9;border-color:#ded6c6;color:#456b45}
+@media(max-width:850px){.sidebar{background:#283d30}}
+@media(max-width:560px){
+  html,body{background:#f3efe5}
+  .sidebar{background:#283d30;border-top-color:#435444}
+  .hero{padding:8px 0 20px}
+  .hero h1{font-size:34px;line-height:1.08}
+  .hero-art{width:68px;height:68px}
+  .suggestion{border-radius:9px 14px 11px 14px}
+  .chat-panel{border-radius:7px 16px 16px 16px}
+}
+
 </style>
 </head>
 <body>
@@ -332,9 +433,9 @@ html,body{background:radial-gradient(ellipse at 78% 0%,#30214f 0,transparent 34%
     <section class="content">
       <div class="hero">
         <div>
-          <div class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9Z"/></svg> YOUR AI PET CARE COMPANION</div>
-          <h1>Care that feels a little<br><span>more natural.</span></h1>
-          <p>Questions about feeding, behavior, grooming or everyday wellness? Let's figure out the next best step for your pet, together.</p>
+          <div class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9Z"/></svg> A LITTLE HELP FOR PET PEOPLE</div>
+          <h1>For the love of<br><span>your little weirdo.</span></h1>
+          <p>Picky eater? Midnight zoomies? Weird new habit? Tell us what’s going on and we’ll help you work out a sensible next step.</p>
         </div>
         <div class="hero-art" aria-hidden="true"><span class="sparkle">✦</span><span class="pet">🐕</span></div>
       </div>
