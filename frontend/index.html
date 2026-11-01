@@ -66,7 +66,7 @@
 .status-pill{font-size:9px;border-radius:999px;padding:4px 7px;background:#e7f4eb;color:#32714d;font-weight:700}
 .status-pill.done{background:#f0f2f0;color:#818a82}
 .auth-backdrop{position:fixed;inset:0;background:#13261dcc;backdrop-filter:blur(5px);z-index:30;display:grid;place-items:center;padding:18px}
-.auth-card{width:min(100%,420px);background:#fff;border-radius:20px;padding:25px;box-shadow:0 22px 80px #0e261f45}
+.auth-card{width:min(100%,420px);background:#fff;border-radius:20px;padding:25px;box-shadow:0 22px 80px #0e261f45;position:relative}.auth-close{position:absolute;right:15px;top:13px;width:30px;height:30px;border:0;border-radius:9px;background:#f4f6f4;color:#627166;font-size:22px;line-height:1}
 .auth-brand{display:flex;align-items:center;gap:9px;margin-bottom:18px}
 .auth-brand .brand-mark{width:34px;height:34px;border-radius:11px}
 .auth-card h2{font:800 24px Manrope,sans-serif;letter-spacing:-.7px;margin:0 0 8px}
@@ -78,7 +78,8 @@
 .auth-foot{font-size:10px;line-height:1.6;color:#9aa39b;margin-top:14px}
 .account-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-size:10px;font-weight:700;color:var(--green);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:560px){.workspace-heading{margin-top:0}.workspace-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.workspace-heading h2{font-size:25px}.data-card{padding:15px}.auth-card{padding:21px}}
-\n</style>
+
+</style>
 </head>
 <body>
 <div class="app">
@@ -117,7 +118,9 @@
         <div class="hero-art" aria-hidden="true"><span class="sparkle">✦</span><span class="pet">🐕</span></div>
       </div>
 
-      <section id="workspaceView" class="workspace-view" hidden aria-live="polite"></section>\n\n      <div class="quick-label">A good place to start <span>· Pick a topic or ask anything</span></div>
+      <section id="workspaceView" class="workspace-view" hidden aria-live="polite"></section>
+
+      <div class="quick-label">A good place to start <span>· Pick a topic or ask anything</span></div>
       <div class="suggestions">
         <button class="suggestion" type="button" data-prompt="How often should I feed my puppy?"><span class="s-icon">🥣</span><strong>Food & nutrition</strong><small>Meals, portions and healthy habits</small></button>
         <button class="suggestion" type="button" data-prompt="What should I know about grooming my pet at home?"><span class="s-icon">🫧</span><strong>Grooming & hygiene</strong><small>Coat care, bathing and nail trims</small></button>
@@ -146,7 +149,7 @@
 </div>
 
 <div class="auth-backdrop" id="authBackdrop" hidden>
-  <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle"><button class="auth-close" id="authClose" type="button" aria-label="Close sign in">×</button>
     <div class="auth-brand"><div class="brand-mark"><span>♥</span></div><div class="brand-name">Pet<span>Nova</span></div></div>
     <h2 id="authTitle">Your pet's little world.</h2>
     <p>Sign in to save pet profiles, keep health notes together, and stay on top of care reminders.</p>
@@ -163,7 +166,8 @@
     <div class="auth-foot">Your saved records are private to your account. For urgent symptoms, contact a veterinarian directly.</div>
   </section>
 </div>
-\n<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
   // Keep the existing FastAPI chat endpoint. Override this on a deployment if needed.
   const API_BASE_URL = window.VETGPT_API_BASE_URL || 'https://vetgpt-backend.onrender.com';
@@ -243,10 +247,6 @@
     button.addEventListener('click', () => handleSend(button.dataset.prompt));
   });
 
-  document.querySelectorAll('[data-coming]').forEach((button) => {
-    button.addEventListener('click', () => showToast(button.dataset.coming + ' is planned for a future update.'));
-  });
-
   // PetNova account + saved care workspace (separate from the existing /chat flow).
   const workspaceView = document.getElementById('workspaceView');
   const contentRoot = document.querySelector('.content');
@@ -279,6 +279,8 @@
     setTimeout(() => document.getElementById('authEmail').focus(), 0);
   }
   function hideAuth() { authBackdrop.hidden = true; }
+  document.getElementById('authClose').addEventListener('click', hideAuth);
+  authBackdrop.addEventListener('click', event => { if (event.target === authBackdrop) hideAuth(); });
   function setAuthMode(mode) {
     authMode = mode;
     document.querySelectorAll('[data-auth-mode]').forEach(el => el.classList.toggle('active', el.dataset.authMode === mode));
@@ -477,6 +479,7 @@
     } catch (error) { showToast(error.message); submit.disabled = false; }
   });
   restoreSession();
-\n</script>
+
+</script>
 </body>
 </html>
