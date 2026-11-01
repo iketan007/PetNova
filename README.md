@@ -1,4 +1,4 @@
-# VetGPT — AI-Powered Pet Care Assistant
+# PetNova — Smarter Care. Happier Pets.
 
 A RAG-based veterinary chatbot: LangChain + FAISS retrieval over a curated
 pet-care knowledge base, generation via Llama 2, served through a FastAPI
@@ -100,3 +100,39 @@ to that URL — then that static link is your public, shareable chatbot.
 Drop more `.md` (or adjust the loader glob for `.txt`/`.pdf`) files into
 `backend/data/knowledge_base/`, then call `POST /reindex` or re-run
 `scripts/build_index.py`.
+
+
+## PetNova saved care workspace
+
+The UI includes **My pets**, **Health records**, and **Reminders**. These features use a SQLite database and require a signing secret for account sessions. The existing `POST /chat` endpoint does not require an account and remains separate.
+
+### Configure account features
+
+In `backend/.env`, set a unique secret with at least 32 characters:
+
+```env
+PETNOVA_AUTH_SECRET=your_unique_long_random_secret_here
+PETNOVA_DB_PATH=./data/petnova.sqlite3
+```
+
+Generate a suitable secret locally with:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(48))"
+```
+
+Do not commit your real `PETNOVA_AUTH_SECRET` or any API keys. Registration and login return a signed session token that expires after seven days. Passwords are stored as PBKDF2-SHA256 hashes, not plaintext. The API scopes pet profiles, records, and reminders to the authenticated account.
+
+### Workspace API
+
+- `POST /auth/register` — create an account (password 10–128 characters)
+- `POST /auth/login` and `GET /auth/me` — sign in and check the current session
+- `GET/POST /pets`, `PATCH/DELETE /pets/{pet_id}` — manage pet profiles
+- `GET/POST /health-records`, `DELETE /health-records/{record_id}` — manage health notes
+- `GET/POST /reminders`, `PATCH/DELETE /reminders/{reminder_id}` — manage reminders
+
+Authenticated requests use `Authorization: Bearer <token>`. The backend validates ownership on pet, health-record, and reminder operations.
+
+### Database persistence on deployment
+
+SQLite is appropriate for a small demo. The Render Free configuration uses an ephemeral path, so saved workspace data can be lost when the service is restarted or redeployed. For reliable production persistence, configure `PETNOVA_DB_PATH` to a mounted persistent disk or migrate the data module to a managed PostgreSQL database. Back up the database and use HTTPS in production. Account features return a configuration error until `PETNOVA_AUTH_SECRET` is set in the hosting environment.
