@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-DB_PATH = os.getenv("PETNOVA_DB_PATH", str(Path(__file__).resolve().parent / "data" / "petnova.sqlite3"))
+DB_PATH = os.getenv("PETNOVA_DB_PATH", str(Path(__file__).resolve().parent.parent / "data" / "petnova.sqlite3"))
 TOKEN_SECRET = os.getenv("PETNOVA_AUTH_SECRET", "")
 
 
