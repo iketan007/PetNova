@@ -1,8 +1,7 @@
 # PetNova — Smarter Care. Happier Pets.
 
-A RAG-based veterinary chatbot: LangChain + FAISS retrieval over a curated
-pet-care knowledge base, generation via Llama 2, served through a FastAPI
-backend, with a simple chat frontend.
+PetNova combines an AI pet-care chat assistant with private pet profiles, health records, and care reminders. The FastAPI backend preserves the existing `POST /chat` endpoint and adds authenticated, user-scoped APIs for saved care data. The responsive frontend is a standalone HTML app.
+
 
 ```
 vetgpt-project/
@@ -74,8 +73,7 @@ cd frontend
 python -m http.server 5500
 ```
 
-It calls `http://localhost:8000` by default. To point it at a different
-backend URL (e.g. once deployed), add this before the closing `</body>` tag:
+The frontend currently calls the deployed backend at `https://vetgpt-backend.onrender.com`. For local development, add this before the closing `</body>` tag:
 
 ```html
 <script>window.VETGPT_API_BASE_URL = 'https://your-deployed-backend.com';</script>
@@ -136,3 +134,12 @@ Authenticated requests use `Authorization: Bearer <token>`. The backend validate
 ### Database persistence on deployment
 
 SQLite is appropriate for a small demo. The Render Free configuration uses an ephemeral path, so saved workspace data can be lost when the service is restarted or redeployed. For reliable production persistence, configure `PETNOVA_DB_PATH` to a mounted persistent disk or migrate the data module to a managed PostgreSQL database. Back up the database and use HTTPS in production. Account features return a configuration error until `PETNOVA_AUTH_SECRET` is set in the hosting environment.
+
+
+### Run the workspace tests
+
+From the `backend` directory, run:
+
+```bash
+python -m unittest discover -s tests
+```
