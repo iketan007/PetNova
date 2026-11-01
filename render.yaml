@@ -14,5 +14,9 @@ services:
         value: llama-3.1-8b-instant
       - key: OPENAI_COMPATIBLE_API_KEY
         sync: false   # set this secret manually in the Render dashboard
+      - key: PETNOVA_AUTH_SECRET
+        generateValue: true # Render generates a private signing secret
+      - key: PETNOVA_DB_PATH
+        value: /tmp/petnova.sqlite3  # Ephemeral on Render Free; use persistent storage for production
       - key: ALLOWED_ORIGINS
         value: "*"
