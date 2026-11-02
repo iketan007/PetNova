@@ -92,8 +92,9 @@ def reindex(x_reindex_key: Optional[str] = Header(default=None)):
         # Force the in-memory vectorstore to reload on next query
         rag._vectorstore = None
         return {"status": "reindexed"}
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"reindex failed: {exc}")
+    except Exception:
+        logger.exception("Knowledge-base reindex failed")
+        raise HTTPException(status_code=500, detail="Knowledge-base reindex failed. Check server logs for details.")
 
 
 # --- PetNova accounts and saved pet-care workspace ---
