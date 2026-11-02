@@ -10,6 +10,7 @@ os.environ["ALLOWED_ORIGINS"] = "http://testserver"
 
 from fastapi.testclient import TestClient  # noqa: E402
 from app import petnova_data  # noqa: E402
+from app.rate_limit import reset_rate_limit_state  # noqa: E402
 petnova_data.DB_PATH = os.environ["PETNOVA_DB_PATH"]
 petnova_data.TOKEN_SECRET = os.environ["PETNOVA_AUTH_SECRET"]
 from app.main import app  # noqa: E402
@@ -19,6 +20,7 @@ client = TestClient(app)
 
 class WorkspaceAPITests(unittest.TestCase):
     def setUp(self):
+        reset_rate_limit_state()
         petnova_data.init_db()
         with petnova_data._connect() as db:
             db.execute("DELETE FROM reminders")
@@ -59,6 +61,16 @@ class WorkspaceAPITests(unittest.TestCase):
             "email": "parent@example.com", "password": "wrong-password"
         })
         self.assertEqual(bad_login.status_code, 401)
+
+    def test_sensitive_endpoints_are_rate_limited(self):
+        payload = {"email": "missing@example.com", "password": "not-a-real-password"}
+        responses = [
+            client.post("/auth/login", json=payload)
+            for _ in range(11)
+        ]
+        self.assertTrue(all(response.status_code == 401 for response in responses[:10]))
+        self.assertEqual(responses[10].status_code, 429)
+        self.assertIn("Retry-After", responses[10].headers)
 
     def test_workspace_rejects_missing_and_invalid_tokens(self):
         self.assertEqual(client.get("/pets").status_code, 401)
