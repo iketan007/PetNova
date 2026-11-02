@@ -10,6 +10,8 @@ Endpoints:
     POST /reindex          -> rebuilds the FAISS index from data/knowledge_base
 """
 from typing import List, Optional
+import logging
+import secrets
 
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,6 +20,8 @@ from pydantic import BaseModel
 from app import config
 from app import rag
 from app import petnova_data as petdata
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="PetNova API",
@@ -66,22 +70,31 @@ def chat(req: ChatRequest):
 
     try:
         answer, docs = rag.answer_query(req.message)
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"generation failed: {exc}")
+    except Exception:
+        # Keep diagnostics in server logs, not in the public API response.
+        logger.exception("Chat generation failed")
+        raise HTTPException(status_code=502, detail="The AI service could not generate a response. Please try again later.")
 
     sources = [Source(content=d.page_content, metadata=d.metadata) for d in docs]
     return ChatResponse(answer=answer, sources=sources)
 
 
 @app.post("/reindex")
-def reindex():
+def reindex(x_reindex_key: Optional[str] = Header(default=None)):
+    # Reindexing can consume significant resources. Disable it unless configured.
+    configured_key = config.REINDEX_API_KEY
+    if len(configured_key) < 32:
+        raise HTTPException(status_code=503, detail="Reindexing is disabled on this deployment.")
+    if not x_reindex_key or not secrets.compare_digest(x_reindex_key, configured_key):
+        raise HTTPException(status_code=401, detail="Invalid reindex credentials.")
     try:
         rag.build_index()
         # Force the in-memory vectorstore to reload on next query
         rag._vectorstore = None
         return {"status": "reindexed"}
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"reindex failed: {exc}")
+    except Exception:
+        logger.exception("Knowledge-base reindex failed")
+        raise HTTPException(status_code=500, detail="Knowledge-base reindex failed. Check server logs for details.")
 
 
 # --- PetNova accounts and saved pet-care workspace ---
