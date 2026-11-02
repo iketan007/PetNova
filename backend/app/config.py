@@ -42,7 +42,10 @@ HF_API_TOKEN = os.getenv("HF_API_TOKEN", "")
 # OPENAI_COMPATIBLE_BASE_URL to http://localhost:11434/v1 for local Ollama instead.
 OPENAI_COMPATIBLE_BASE_URL = os.getenv("OPENAI_COMPATIBLE_BASE_URL", "https://api.groq.com/openai/v1")
 OPENAI_COMPATIBLE_API_KEY = os.getenv("OPENAI_COMPATIBLE_API_KEY", os.getenv("GROQ_API_KEY", "not-needed"))
-OPENAI_COMPATIBLE_MODEL = "openai/gpt-oss-20b"
+OPENAI_COMPATIBLE_MODEL = os.getenv("OPENAI_COMPATIBLE_MODEL", "llama-3.1-8b-instant")
+
+# Optional operator secret; when unset, manual reindexing stays disabled.
+REINDEX_API_KEY = os.getenv("REINDEX_API_KEY", "")
 
 # --- Generation ---
 MAX_NEW_TOKENS = int(os.getenv("MAX_NEW_TOKENS", "512"))
