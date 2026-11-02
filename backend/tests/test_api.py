@@ -10,6 +10,8 @@ os.environ["ALLOWED_ORIGINS"] = "http://testserver"
 
 from fastapi.testclient import TestClient  # noqa: E402
 from app import petnova_data  # noqa: E402
+petnova_data.DB_PATH = os.environ["PETNOVA_DB_PATH"]
+petnova_data.TOKEN_SECRET = os.environ["PETNOVA_AUTH_SECRET"]
 from app.main import app  # noqa: E402
 
 client = TestClient(app)
