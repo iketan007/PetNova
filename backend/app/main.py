@@ -10,6 +10,7 @@ Endpoints:
     POST /reindex          -> rebuilds the FAISS index from data/knowledge_base
 """
 from typing import List, Optional
+import secrets
 
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
@@ -66,15 +67,22 @@ def chat(req: ChatRequest):
 
     try:
         answer, docs = rag.answer_query(req.message)
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"generation failed: {exc}")
+    except Exception:
+        # Do not expose provider credentials or internal details to API clients.
+        raise HTTPException(status_code=502, detail="The AI service could not generate a response. Please try again later.")
 
     sources = [Source(content=d.page_content, metadata=d.metadata) for d in docs]
     return ChatResponse(answer=answer, sources=sources)
 
 
 @app.post("/reindex")
-def reindex():
+def reindex(x_reindex_key: Optional[str] = Header(default=None)):
+    # Reindexing can consume significant resources. Disable it unless configured.
+    configured_key = config.REINDEX_API_KEY
+    if len(configured_key) < 32:
+        raise HTTPException(status_code=503, detail="Reindexing is disabled on this deployment.")
+    if not x_reindex_key or not secrets.compare_digest(x_reindex_key, configured_key):
+        raise HTTPException(status_code=401, detail="Invalid reindex credentials.")
     try:
         rag.build_index()
         # Force the in-memory vectorstore to reload on next query
