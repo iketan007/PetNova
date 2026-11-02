@@ -28,6 +28,67 @@
 @media(max-width:600px){html,body{height:auto;min-height:100%;background:var(--bg)}.app{display:block;min-height:100vh}.sidebar{position:fixed;z-index:20;left:0;right:0;bottom:0;top:auto;width:100%;height:auto;min-height:0;display:block;padding:7px 9px calc(7px + env(safe-area-inset-bottom,0));border-right:0;border-top:1px solid var(--line);background:#fffdf9f5;backdrop-filter:blur(14px)}.brand,.workspace-label,.sidebar-bottom{display:none}.nav{display:flex;justify-content:space-around;gap:3px}.nav-item{width:auto;min-width:58px;display:flex;flex-direction:column;gap:4px;padding:6px 8px;border-radius:10px;font-size:9px}.nav-item .nav-label{display:block;font-size:9px}.nav-item svg{width:18px;height:18px}.nav-item.active{box-shadow:none}.main{min-height:calc(100vh - 65px);padding-bottom:70px}.topbar{height:59px;padding:0 15px}.crumb{font-size:11px}.top-actions{gap:6px}.online{font-size:9px;padding:7px 8px}.account-chip{font-size:10px;padding:8px 10px;max-width:94px}.icon-btn{width:32px;height:32px}.content{padding:18px 13px 20px}.hero{grid-template-columns:minmax(0,1fr) 75px;gap:7px;padding:22px 16px 23px;border-radius:20px 20px 20px 6px;margin-bottom:23px}.hero .eyebrow{font-size:8px;letter-spacing:.7px;padding:6px 8px;gap:5px}.hero h1{font-size:clamp(31px,8.5vw,42px);letter-spacing:-1.5px;margin:14px 0 11px;line-height:1.01}.hero p{font-size:12px;line-height:1.7}.hero-art{width:70px;height:70px;border-width:3px}.hero-art:before{inset:4px}.hero-art .pet{font-size:36px}.hero-art .sparkle{top:4px;right:7px;font-size:14px}.art-orbit{width:85px;height:29px}.art-note{font-size:8px;padding:6px 7px;right:-5px;bottom:-15px}.quick-label{font-size:9px;letter-spacing:.7px;gap:5px;line-height:1.6}.quick-label span{font-size:10px}.suggestions{grid-template-columns:1fr;gap:8px;margin-bottom:18px}.suggestion{min-height:0;display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:11px;align-items:center;padding:11px 12px;border-radius:12px}.suggestion:after{right:12px;top:12px}.suggestion .s-icon{grid-row:span 2;width:34px;height:34px;margin:0;font-size:16px}.suggestion strong{font-size:12px;margin:0 24px 3px 0}.suggestion small{font-size:10px;grid-column:2}.chat-panel{min-height:315px;border-radius:15px 15px 15px 5px;box-shadow:0 5px 0 #f3eadf}.chat-head{padding:12px}.assistant-avatar{width:36px;height:36px;font-size:18px}.assistant-name{font-size:12px}.assistant-status{font-size:9px}.clear-btn{font-size:9px;padding:8px}.chat{padding:13px;max-height:38vh}.empty-note{font-size:11px}.msg{max-width:94%;font-size:12px;padding:11px 13px}.composer-wrap{padding:0 9px 9px}.composer{padding:5px 5px 5px 10px;gap:8px;border-radius:11px}.composer:before{font-size:17px}.composer input{font-size:13px;min-height:43px;padding:9px 0}.send{width:42px;height:42px;border-radius:9px}.disclaimer{font-size:8px;padding-bottom:12px}.footer{font-size:10px;padding-top:15px}.workspace-heading{gap:9px;margin-top:0}.workspace-heading h2{font-size:25px}.workspace-heading p{font-size:11px;max-width:240px}.primary-btn{font-size:10px;padding:10px 11px}.workspace-grid{grid-template-columns:1fr}.data-card{padding:15px}.data-card h3{font-size:14px}.data-card p{font-size:12px}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.inline-form{padding:15px}.auth-card{padding:21px}.auth-card h2{font-size:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
+
+/* PetNova art direction: photographic pet-care landing page + playful AI companion */
+:root{--bg:#fff8ef;--paper:#fffaf5;--ink:#252329;--muted:#79747e;--line:#eee4da;--orange:#f47721;--orange-dark:#df6413;--orange-soft:#fff0e2;--purple:#4b35ce;--purple-dark:#3621a7;--purple-soft:#f0edff}
+body{background:#fff8ef;background-image:radial-gradient(#4b35ce0b .8px,transparent .8px);background-size:13px 13px}
+.app{background:#fffaf5;grid-template-columns:230px minmax(0,1fr)}
+.sidebar{background:#fffdfb;border-right:1px solid #f0e5d9;padding:25px 15px 18px}
+.brand-mark{background:linear-gradient(140deg,#ff8d36,#f2671d);border-radius:15px 15px 15px 5px}
+.brand-name{letter-spacing:-1.2px}.brand-name span{color:#f47721}
+.nav-item.active{background:#f0edff;border-color:#e5e0ff;color:#4b35ce;box-shadow:inset 3px 0 0 #4b35ce}
+.topbar{background:#fffaf5eF;border-color:#f0e5d9}
+.content{max-width:1400px;padding-top:27px}
+.hero-photo{height:clamp(340px,37vw,465px);min-height:330px;position:relative;isolation:isolate;overflow:hidden;border-radius:22px 22px 22px 6px;background:#373025;margin-bottom:30px;box-shadow:0 17px 34px #5c3b2019}
+.hero-photo-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 47%;z-index:-2}
+.hero-photo-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,23,18,.78) 0%,rgba(22,25,18,.60) 36%,rgba(25,25,20,.12) 73%,rgba(25,25,20,.05) 100%),linear-gradient(0deg,rgba(17,20,16,.28),transparent 40%)}
+.hero-photo-copy{position:absolute;left:clamp(24px,4vw,55px);top:50%;transform:translateY(-50%);width:min(58%,570px);color:#fff}
+.hero-photo .eyebrow{display:flex;align-items:center;gap:8px;background:#fff2;color:#fff;border:1px solid #ffffff55;border-radius:999px;padding:9px 13px;letter-spacing:1.2px;font-size:10px;backdrop-filter:blur(8px)}
+.eyebrow-paw{font-size:15px;color:#ffc18c}
+.hero-photo h1{font:800 clamp(42px,5.2vw,72px)/.98 Manrope,sans-serif;letter-spacing:-3.2px;margin:22px 0 16px;color:white}
+.hero-photo h1 span{color:#ffb675}
+.hero-photo p{font-size:15px;line-height:1.85;color:#fff2e7;max-width:440px;margin:0 0 22px}
+.hero-cta{display:inline-flex;align-items:center;gap:25px;background:#f47721;color:#fff;border:0;border-radius:999px;padding:14px 20px;font-weight:800;font-size:13px;box-shadow:0 7px 20px #9e461b40;transition:transform .2s,background .2s}
+.hero-cta:hover{background:#ff8a32;transform:translateY(-2px)}.hero-cta span{font-size:17px}
+.hero-photo-note{position:absolute;right:20px;bottom:20px;display:flex;align-items:center;gap:11px;padding:12px 15px;border:1px solid #ffffff70;border-radius:15px 15px 15px 5px;background:#fffdf2ed;color:#27232c;box-shadow:0 12px 28px #1b1b1b20;backdrop-filter:blur(12px)}
+.note-mascot{display:grid;place-items:center;width:42px;height:42px;border-radius:13px 13px 13px 4px;background:#f47721;color:#fff;font-size:23px}
+.hero-photo-note strong,.hero-photo-note small{display:block}.hero-photo-note strong{font:800 12px Manrope,sans-serif}.hero-photo-note small{font-size:10px;color:#827b76;margin-top:4px}.note-spark{color:#f47721;font-size:21px;margin-left:4px}
+.care-overview{margin-bottom:34px}
+.care-overview-title{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 16px}
+.section-kicker{display:block;color:#8d7c6b;font-size:10px;font-weight:850;letter-spacing:1.7px;margin-bottom:8px}
+.care-overview-title h2,.assistant-section-heading h2{font:800 clamp(23px,2.6vw,34px)/1.15 Manrope,sans-serif;letter-spacing:-1.2px;margin:0;color:#2a2730}
+.care-title-mark{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff0e2;color:#f47721;font-size:25px;flex-shrink:0}
+.care-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.care-shortcut{min-width:0;min-height:105px;display:flex;align-items:center;gap:12px;text-align:left;padding:17px 14px;background:#fff;border:1px solid #eee4da;border-radius:17px 17px 17px 5px;box-shadow:0 5px 0 #f4ece3;transition:transform .18s,box-shadow .18s,border-color .18s}
+.care-shortcut:hover{transform:translateY(-3px);box-shadow:0 10px 22px #4b35ce12;border-color:#d7cffc}
+.shortcut-icon{width:43px;height:43px;display:grid;place-items:center;flex-shrink:0;border-radius:14px 14px 14px 5px;background:#fff0e2;font-size:22px}
+.care-shortcut.wellness .shortcut-icon{background:#efebff}.care-shortcut.companion .shortcut-icon{background:#e8f4e9}
+.shortcut-copy{min-width:0;flex:1}.shortcut-copy strong{display:block;font:800 13px Manrope,sans-serif;color:#29252d;margin-bottom:6px}.shortcut-copy small{display:block;font-size:11px;line-height:1.5;color:#89818a}
+.shortcut-arrow{align-self:flex-start;color:#b3a9a0;font-size:16px}
+.assistant-section-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:3px 0 22px}
+.assistant-section-heading h2{font-size:clamp(25px,2.8vw,36px)}.assistant-section-heading p{margin:8px 0 0;font-size:13px;color:#817a84}
+.ai-badge{display:flex;align-items:center;gap:8px;background:#efebff;border:1px solid #e2dcff;color:#4b35ce;padding:10px 13px;border-radius:999px;font-size:10px;font-weight:850;letter-spacing:1px;white-space:nowrap}
+.ai-badge span{display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:#4b35ce;color:white;font-size:13px}
+.quick-label{color:#645b69;font-size:10px;letter-spacing:1.4px;margin-bottom:12px}.quick-label span{font-size:11px;color:#9b929b}
+.suggestions{gap:12px;margin-bottom:22px}.suggestion{min-height:105px;border-radius:15px 15px 15px 5px;padding:15px;border-color:#eee5dc;box-shadow:0 4px 0 #f5eee6}.suggestion .s-icon{width:35px;height:35px;border-radius:12px 12px 12px 4px;background:#fff0e2}.suggestion:nth-child(2) .s-icon{background:#efebff}.suggestion:nth-child(3) .s-icon{background:#e8f4e9}
+.chat-panel{border-radius:19px 19px 19px 6px;border-color:#e8def5;box-shadow:0 7px 0 #f0ecff;overflow:visible}
+.chat-head{background:linear-gradient(90deg,#f3f0ff,#fffdf9);border-radius:18px 18px 0 0;border-bottom-color:#e9e3f8}
+.assistant-avatar{background:#4b35ce;color:#fff;border-radius:14px 14px 14px 5px;box-shadow:0 6px 12px #4b35ce25}
+.assistant-name{font:800 14px Manrope,sans-serif}.assistant-status{color:#8b8496}
+.clear-btn{background:#fff;border-color:#e6def5;color:#655a7e}
+.chat{background:#fffdfa}.msg.bot{background:#f0edff;color:#3a315d;border-bottom-left-radius:5px}
+.composer-wrap{padding:0 18px 13px;background:#fffdfa;border-radius:0 0 19px 6px}
+.composer{border:2px solid #d8cffb;border-radius:16px 16px 16px 5px;box-shadow:0 5px 0 #f0edff;padding:8px 8px 8px 16px}
+.composer:before{content:"✦";font-size:23px;color:#4b35ce}
+.composer:focus-within{border-color:#4b35ce;box-shadow:0 0 0 4px #4b35ce16,0 5px 0 #f0edff}
+.composer input{font-size:16px;min-height:53px}.composer input::placeholder{color:#9d96a4}
+.send{width:52px;height:52px;border-radius:13px 13px 13px 5px;background:#f47721}.send:hover{background:#df6413}
+.disclaimer{background:#fffdfa}.footer{color:#a39a9c}
+.content.workspace-mode .hero-photo,.content.workspace-mode .care-overview,.content.workspace-mode .assistant-section-heading{display:none}
+@media(max-width:900px){.app{grid-template-columns:78px minmax(0,1fr)}.hero-photo{height:380px}.hero-photo-note{right:13px;bottom:13px}.care-shortcut{padding:13px 10px;gap:8px}.shortcut-icon{width:37px;height:37px;font-size:19px}.shortcut-copy strong{font-size:12px}.shortcut-copy small{font-size:10px}}
+@media(max-width:600px){.hero-photo{height:430px;min-height:0;margin-bottom:24px;border-radius:18px 18px 18px 5px}.hero-photo-img{object-position:62% center}.hero-photo-shade{background:linear-gradient(0deg,rgba(18,21,18,.87) 0%,rgba(18,21,18,.58) 50%,rgba(18,21,18,.04) 100%)}.hero-photo-copy{left:20px;right:18px;top:auto;bottom:94px;transform:none;width:auto}.hero-photo .eyebrow{font-size:8px;letter-spacing:.8px;padding:7px 9px}.hero-photo h1{font-size:clamp(43px,12vw,59px);letter-spacing:-2.4px;margin:17px 0 12px}.hero-photo p{font-size:12px;line-height:1.7;max-width:330px;margin-bottom:16px}.hero-cta{font-size:11px;padding:12px 16px;gap:19px}.hero-photo-note{left:13px;right:13px;bottom:12px;padding:9px 11px;gap:9px}.note-mascot{width:35px;height:35px;font-size:19px}.hero-photo-note strong{font-size:11px}.hero-photo-note small{font-size:9px}.note-spark{margin-left:auto}.care-overview{margin-bottom:27px}.care-overview-title{margin-bottom:12px}.care-overview-title h2,.assistant-section-heading h2{font-size:24px;letter-spacing:-.8px}.section-kicker{font-size:8px;letter-spacing:1.2px;margin-bottom:7px}.care-title-mark{width:36px;height:36px;font-size:20px}.care-shortcuts{grid-template-columns:1fr;gap:8px}.care-shortcut{min-height:73px;padding:11px 12px;border-radius:13px 13px 13px 4px}.shortcut-icon{width:39px;height:39px;font-size:20px}.shortcut-copy strong{font-size:12px;margin-bottom:3px}.shortcut-copy small{font-size:10px}.shortcut-arrow{align-self:center}.assistant-section-heading{align-items:flex-start;margin:0 0 18px}.assistant-section-heading h2{font-size:25px}.assistant-section-heading p{font-size:11px;line-height:1.6}.ai-badge{font-size:8px;padding:7px 8px;gap:5px}.ai-badge span{width:17px;height:17px;font-size:10px}.quick-label{font-size:9px;letter-spacing:.8px}.quick-label span{font-size:9px}.suggestions{grid-template-columns:1fr;gap:8px;margin-bottom:17px}.suggestion{min-height:0;display:grid;grid-template-columns:35px minmax(0,1fr);column-gap:10px;align-items:center;padding:10px 12px}.suggestion .s-icon{grid-row:span 2;width:34px;height:34px;margin:0}.suggestion strong{font-size:12px;margin:0 20px 3px 0}.suggestion small{font-size:10px;grid-column:2}.chat-panel{min-height:330px}.composer-wrap{padding:0 9px 9px}.composer{padding:5px 5px 5px 10px;gap:8px}.composer input{font-size:13px;min-height:43px}.send{width:42px;height:42px}.chat-head{padding:12px}.chat{padding:13px;max-height:38vh}}
+@media(prefers-reduced-motion:reduce){.care-shortcut,.hero-cta{transition:none}}
+
 </style>
 </head>
 <body>
@@ -58,22 +119,34 @@
       <div class="top-actions"><button class="account-chip" id="accountButton" type="button">Sign in</button><div class="online"><span class="dot"></span><span>Assistant ready</span></div><button class="icon-btn" id="newChatTop" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button></div>
     </header>
     <section class="content">
-      <div class="hero">
-        <div>
-          <div class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9Z"/></svg> FIELD NOTES FOR PET PEOPLE</div>
-          <h1>For the days they<br><span>can’t tell you.</span></h1>
-          <p>From fussy dinners to odd little habits, get a calm place to start. No judgement, no panic—just practical guidance for the animal who trusts you with everything.</p>
+      <section class="hero-photo" aria-label="Welcome to PetNova">
+        <img class="hero-photo-img" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1800&q=88" alt="Happy golden retriever sitting in a sunlit green field" fetchpriority="high">
+        <div class="hero-photo-shade"></div>
+        <div class="hero-photo-copy">
+          <div class="eyebrow"><span class="eyebrow-paw">✳</span> YOUR PET'S EVERYDAY COMPANION</div>
+          <h1>Big love.<br><span>Better care.</span></h1>
+          <p>Little questions, daily routines, and the moments you’re not quite sure about. Meet your new favourite place to care for them.</p>
+          <button class="hero-cta" type="button" data-focus-chat>Ask PetNova <span aria-hidden="true">↗</span></button>
         </div>
-        <div class="hero-art" aria-hidden="true"><span class="art-orbit"></span><span class="sparkle">✳</span><span class="pet">🐕</span><span class="art-note">care, in<br>the little things</span></div>
-      </div>
+        <div class="hero-photo-note"><span class="note-mascot">🐾</span><span><strong>A little help, a lot of love</strong><small>Your AI pet-care companion</small></span><span class="note-spark">✦</span></div>
+      </section>
+      <section class="care-overview" aria-label="Pet care shortcuts">
+        <div class="care-overview-title"><div><span class="section-kicker">YOUR PET'S LITTLE WORLD</span><h2>Care starts with the small things.</h2></div><span class="care-title-mark">✳</span></div>
+        <div class="care-shortcuts">
+          <button class="care-shortcut food" type="button" data-prompt="Help me build a healthy daily feeding routine for my pet. Ask me about my pet's species, age, and weight first."><span class="shortcut-icon">🥣</span><span class="shortcut-copy"><strong>Food & routine</strong><small>Make everyday care easier</small></span><span class="shortcut-arrow">↗</span></button>
+          <button class="care-shortcut wellness" type="button" data-prompt="What wellness checks and preventive care should I keep track of for my pet?"><span class="shortcut-icon">💜</span><span class="shortcut-copy"><strong>Health & wellness</strong><small>Feel ready for every check-in</small></span><span class="shortcut-arrow">↗</span></button>
+          <button class="care-shortcut companion" type="button" data-prompt="I want to understand my pet's behaviour better. Help me figure out what to observe and what questions to answer."><span class="shortcut-icon">🐶</span><span class="shortcut-copy"><strong>Ask about behaviour</strong><small>Decode their little signals</small></span><span class="shortcut-arrow">↗</span></button>
+        </div>
+      </section>
 
       <section id="workspaceView" class="workspace-view" hidden aria-live="polite"></section>
 
-      <div class="quick-label">A good place to start <span>· Pick a topic or ask anything</span></div>
+      <div class="assistant-section-heading"><div><span class="section-kicker">MEET YOUR AI COMPANION</span><h2>Ask anything. Care with confidence.</h2><p>Friendly guidance for your pet's everyday questions.</p></div><div class="ai-badge"><span>✦</span> AI PET CARE</div></div>
+      <div class="quick-label">POPULAR QUESTIONS <span>· Start with one of these</span></div>
       <div class="suggestions">
-        <button class="suggestion" type="button" data-prompt="How often should I feed my puppy?"><span class="s-icon">🥣</span><strong>Food & nutrition</strong><small>Meals, portions and healthy habits</small></button>
-        <button class="suggestion" type="button" data-prompt="What should I know about grooming my pet at home?"><span class="s-icon">🫧</span><strong>Grooming & hygiene</strong><small>Coat care, bathing and nail trims</small></button>
-        <button class="suggestion" type="button" data-prompt="What routine vaccinations should I discuss with my veterinarian for my pet?"><span class="s-icon">🩺</span><strong>Health & wellness</strong><small>Preventive care and vet visit prep</small></button>
+        <button class="suggestion" type="button" data-prompt="How often should I feed my puppy?"><span class="s-icon">🥣</span><strong>Feeding your pet</strong><small>Portions, schedules and healthy habits</small></button>
+        <button class="suggestion" type="button" data-prompt="What should I know about grooming my pet at home?"><span class="s-icon">🫧</span><strong>Grooming at home</strong><small>Coat care, bathing and nail trims</small></button>
+        <button class="suggestion" type="button" data-prompt="What routine vaccinations should I discuss with my veterinarian for my pet?"><span class="s-icon">🩺</span><strong>Preventive health</strong><small>Wellness checks and vet visit prep</small></button>
       </div>
 
       <section class="chat-panel" aria-label="PetNova AI chat">
@@ -427,6 +500,11 @@
       }
     } catch (error) { showToast(error.message); submit.disabled = false; }
   });
+  document.querySelectorAll('[data-focus-chat]').forEach(button => button.addEventListener('click', () => {
+    const input = document.getElementById('chatInput');
+    input?.focus();
+    input?.scrollIntoView({behavior:'smooth',block:'center'});
+  }));
   restoreSession();
 
 </script>
