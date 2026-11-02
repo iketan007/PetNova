@@ -253,6 +253,7 @@ def delete_reminder(user_id: int, reminder_id: int) -> bool:
 # Keep this dispatch at the end so the existing SQLite API is replaced as a whole.
 if os.getenv("DATABASE_URL", "").strip():
     from app import petnova_postgres as _postgres
+    _postgres.init_db()
 
     for _function_name in (
         "init_db", "create_token", "verify_token", "register_user",
