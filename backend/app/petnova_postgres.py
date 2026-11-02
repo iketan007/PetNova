@@ -311,4 +311,3 @@ def delete_reminder(user_id: int, reminder_id: int) -> bool:
     return cur.rowcount > 0
 
 
-init_db()
