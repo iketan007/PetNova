@@ -20,8 +20,9 @@ services:
         value: /tmp/petnova.sqlite3  # Ephemeral on Render Free; use persistent storage for production
       - key: ALLOWED_ORIGINS
         value: "https://petnova-frontend.onrender.com,https://vetgpt-ai-hxcr.vercel.app"
-  - type: static
+  - type: web
     name: petnova-frontend
+    runtime: static
     rootDir: .
     buildCommand: echo "No build step required for static frontend"
     staticPublishPath: ./frontend
