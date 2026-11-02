@@ -249,4 +249,18 @@ def delete_reminder(user_id: int, reminder_id: int) -> bool:
     return cur.rowcount > 0
 
 
-init_db()
+# DATABASE_URL opts into PostgreSQL; without it, local development remains SQLite.
+# Keep this dispatch at the end so the existing SQLite API is replaced as a whole.
+if os.getenv("DATABASE_URL", "").strip():
+    from app import petnova_postgres as _postgres
+
+    for _function_name in (
+        "init_db", "create_token", "verify_token", "register_user",
+        "authenticate_user", "get_user", "list_pets", "create_pet",
+        "update_pet", "get_pet", "delete_pet", "list_records",
+        "create_record", "delete_record", "list_reminders",
+        "create_reminder", "update_reminder", "delete_reminder",
+    ):
+        globals()[_function_name] = getattr(_postgres, _function_name)
+else:
+    init_db()
