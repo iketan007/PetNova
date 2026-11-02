@@ -77,7 +77,7 @@ Workspace requests use `Authorization: Bearer <token>`. Passwords are hashed wit
 
 The backend can be deployed with the Dockerfile and `render.yaml`; deploy the static frontend from the `frontend` directory. Configure `OPENAI_COMPATIBLE_API_KEY`, `OPENAI_COMPATIBLE_MODEL`, and `PETNOVA_AUTH_SECRET` in the backend host's environment.
 
-The Render Free database path is ephemeral. Data can be lost when the service restarts or redeploys. For a real deployment, configure `PETNOVA_DB_PATH` to a persistent disk or migrate persistence to managed PostgreSQL, and establish backups before storing important records. Restrict `ALLOWED_ORIGINS` to the frontend origin when practical.
+The Render Free database path is ephemeral. Data can be lost when the service restarts or redeploys. For a real deployment, configure `PETNOVA_DB_PATH` to a persistent disk or migrate persistence to managed PostgreSQL, and establish backups before storing important records. The Render blueprint restricts `ALLOWED_ORIGINS` to `https://vetgpt-ai-hxcr.vercel.app`; update that value if the Vercel domain changes. For local development, set `ALLOWED_ORIGINS=http://localhost:5500,http://127.0.0.1:5500`. Do not use `*` for a production deployment.
 
 ## Tests
 
