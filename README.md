@@ -34,7 +34,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Copy `backend/.env.example` to `backend/.env` and set a valid LLM provider API key. The default provider is OpenAI-compatible and the default base URL targets Groq. Check the provider dashboard for a currently supported model and set `OPENAI_COMPATIBLE_MODEL` accordingly. Never commit real API keys or secrets.
+Copy `backend/.env.example` to `backend/.env` and set a valid LLM provider API key. The default provider is OpenAI-compatible and the default base URL targets Groq. The default model is `openai/gpt-oss-20b`; verify availability with your provider and override `OPENAI_COMPATIBLE_MODEL` if needed. Never commit real API keys or secrets.
 
 Generate a session-signing secret locally:
 
