@@ -13,3 +13,6 @@ rank-bm25==0.2.2
 
 # Groq/OpenAI-compatible API
 openai==1.55.3
+
+# Optional durable PostgreSQL storage (enabled with DATABASE_URL)
+psycopg[binary]==3.2.3
