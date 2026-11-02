@@ -10,6 +10,7 @@ Endpoints:
     POST /reindex          -> rebuilds the FAISS index from data/knowledge_base
 """
 from typing import List, Optional
+import logging
 import secrets
 
 from fastapi import FastAPI, HTTPException, Depends, Header
@@ -19,6 +20,8 @@ from pydantic import BaseModel
 from app import config
 from app import rag
 from app import petnova_data as petdata
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="PetNova API",
@@ -68,7 +71,8 @@ def chat(req: ChatRequest):
     try:
         answer, docs = rag.answer_query(req.message)
     except Exception:
-        # Do not expose provider credentials or internal details to API clients.
+        # Keep diagnostics in server logs, not in the public API response.
+        logger.exception("Chat generation failed")
         raise HTTPException(status_code=502, detail="The AI service could not generate a response. Please try again later.")
 
     sources = [Source(content=d.page_content, metadata=d.metadata) for d in docs]
