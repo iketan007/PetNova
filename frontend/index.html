@@ -459,6 +459,142 @@ body{background-image:radial-gradient(#a89d8020 .7px,transparent .7px);backgroun
  .suggestion small{grid-column:2}
 }
 
+
+/* Type scale + unmistakable assistant composer: a more confident, crafted interface */
+:root{
+  --bg:#f1ecdf;--ink:#26372a;--muted:#686f61;--line:#d9d0be;
+  --green:#355f3d;--green-dark:#23472d;--mint:#e4e9d5;--mint-2:#f0eddf;
+  --peach:#f1d8c4;--shadow:0 16px 38px rgba(53,63,40,.09);
+}
+body{font-size:16px}
+.sidebar{padding:30px 19px 22px}
+.brand{padding-bottom:42px}
+.brand-name{font-size:24px}
+.workspace-label{font-size:11px}
+.nav-item{font-size:15px;padding:14px 13px;gap:13px}
+.nav-item svg{width:20px;height:20px}
+.help-card{padding:17px}
+.help-card strong{font-size:14px}
+.help-card p{font-size:13px;line-height:1.7}
+.text-link{font-size:13px}
+.profile-name{font-size:14px}
+.profile-sub{font-size:12px}
+.topbar{height:82px}
+.crumb{font-size:14px}
+.online{font-size:12px;padding:9px 13px}
+.account-chip{font-size:12px;padding:10px 14px}
+.content{max-width:1280px;padding-top:34px;padding-bottom:32px}
+.hero{grid-template-columns:minmax(0,1fr) 225px;gap:30px;padding-bottom:36px}
+.hero .eyebrow{font-size:12px;letter-spacing:1.8px}
+.hero h1{font-size:clamp(48px,5.5vw,72px);line-height:.99;letter-spacing:-2.4px;margin:20px 0 18px}
+.hero p{font-size:17px;line-height:1.8;max-width:570px}
+.hero-art{width:205px;height:205px}
+.hero-art .pet{font-size:91px}
+.art-note{font-size:15px;padding:13px 17px}
+.quick-label{font-size:13px;letter-spacing:1.3px;margin-bottom:15px}
+.quick-label span{font-size:13px}
+.suggestions{gap:16px;margin-bottom:28px}
+.suggestion{min-height:150px;padding:21px 20px 19px}
+.suggestion .s-icon{width:42px;height:42px;font-size:18px;margin-bottom:14px}
+.suggestion strong{font-size:16px;margin-bottom:7px}
+.suggestion small{font-size:13px;line-height:1.65}
+.chat-panel{min-height:330px;border-radius:5px 22px 5px 22px;box-shadow:0 8px 0 #e6dece,0 18px 38px #38412b0b}
+.chat-head{padding:21px 24px}
+.assistant-avatar{width:45px;height:45px;font-size:22px}
+.assistant-name{font-size:16px}
+.assistant-status{font-size:12px;margin-top:4px}
+.clear-btn{font-size:13px}
+.chat{padding:25px;gap:16px;min-height:155px;max-height:440px}
+.empty-note{font-size:14px;line-height:1.85;max-width:370px}
+.empty-note .mini-spark{font-size:28px}
+.msg{font-size:15px;line-height:1.75;padding:15px 18px;max-width:min(80%,650px)}
+.composer-wrap{padding:0 22px 14px}
+.composer{
+  gap:14px;padding:10px 10px 10px 22px;
+  background:#fffdf7;border:2px solid #b9c4a8;
+  border-radius:5px 18px 5px 18px;
+  box-shadow:0 5px 0 #e6dfd0,0 12px 28px rgba(48,69,42,.08);
+}
+.composer:before{content:"✳";font-size:20px;color:#a45f46;flex-shrink:0}
+.composer:focus-within{border-color:#527a4d;box-shadow:0 0 0 4px #dce5d1,0 6px 0 #e6dfd0}
+.composer input{font-size:17px;padding:15px 0;min-height:54px}
+.composer input::placeholder{color:#777969;opacity:1}
+.send{width:54px;height:54px;border-radius:4px 13px 4px 13px;background:#355f3d}
+.send svg{width:22px;height:22px}
+.disclaimer{font-size:11px;padding:4px 10px 17px}
+.footer{font-size:12px;padding-top:22px}
+.workspace-heading h2{font-size:clamp(30px,3.3vw,40px)}
+.workspace-heading p{font-size:15px;line-height:1.7}
+.primary-btn{font-size:14px;padding:13px 17px}
+.secondary-btn,.danger-btn{font-size:13px;padding:10px 12px}
+.data-card{padding:21px}
+.data-card h3{font-size:17px}
+.data-card p{font-size:14px;line-height:1.7}
+.pet-emoji{width:50px;height:50px;font-size:26px}
+.meta-pill{font-size:12px;padding:6px 10px}
+.empty-state{padding:44px 24px}
+.empty-state strong{font-size:17px}
+.empty-state p{font-size:14px;line-height:1.8}
+.inline-form{padding:22px}
+.inline-form h3{font-size:18px}
+.form-field label{font-size:12px}
+.form-field input,.form-field select,.form-field textarea{font-size:14px;padding:12px}
+.record-card{padding:18px}
+.record-main h3{font-size:15px}
+.record-main p{font-size:13px}
+.status-pill{font-size:11px}
+.auth-card h2{font-size:29px}
+.auth-card>p{font-size:14px}
+.auth-tab{font-size:13px}
+.auth-foot{font-size:12px}
+@media(max-width:850px){
+ .nav-item{font-size:13px}
+ .hero{grid-template-columns:minmax(0,1fr) 165px;gap:18px}
+ .hero h1{font-size:clamp(42px,6vw,58px)}
+ .hero-art{width:150px;height:150px}
+ .hero-art .pet{font-size:66px}
+ .suggestion{min-height:135px}
+ .suggestion strong{font-size:14px}
+ .suggestion small{font-size:12px}
+ .composer input{font-size:16px}
+}
+@media(max-width:560px){
+ .topbar{height:58px}
+ .crumb{font-size:12px}
+ .online{font-size:10px;padding:7px 9px}
+ .content{padding:22px 15px 20px}
+ .hero{grid-template-columns:minmax(0,1fr) 76px;gap:8px;padding:8px 0 26px}
+ .hero h1{font-size:clamp(35px,9vw,43px);letter-spacing:-1.2px;line-height:1.02}
+ .hero p{font-size:14px;line-height:1.75}
+ .hero .eyebrow{font-size:9px;letter-spacing:1.1px}
+ .hero-art{width:72px;height:72px}
+ .hero-art .pet{font-size:37px}
+ .art-note{font-size:9px;padding:6px 8px;right:-3px}
+ .quick-label{font-size:10px;letter-spacing:.8px}
+ .quick-label span{font-size:11px}
+ .suggestions{gap:9px;margin-bottom:20px}
+ .suggestion{padding:13px;min-height:0}
+ .suggestion strong{font-size:14px}
+ .suggestion small{font-size:12px}
+ .chat-panel{min-height:310px}
+ .chat-head{padding:14px}
+ .assistant-avatar{width:38px;height:38px;font-size:19px}
+ .assistant-name{font-size:14px}
+ .assistant-status{font-size:10px}
+ .chat{padding:15px;max-height:42vh}
+ .empty-note{font-size:13px}
+ .msg{font-size:14px;max-width:94%}
+ .composer-wrap{padding:0 10px 11px}
+ .composer{padding:7px 7px 7px 12px;gap:9px}
+ .composer:before{font-size:17px}
+ .composer input{font-size:15px;min-height:45px;padding:10px 0}
+ .send{width:45px;height:45px}
+ .disclaimer{font-size:9px;line-height:1.6}
+ .workspace-heading h2{font-size:28px}
+ .workspace-heading p{font-size:13px}
+ .data-card p{font-size:13px}
+}
+
 </style>
 </head>
 <body>
