@@ -8,10 +8,11 @@ PetNova is an AI pet-care assistant with a responsive web interface, account-bas
 PetNova/
 ├── backend/
 │   ├── app/main.py          # FastAPI routes, validation, auth dependencies
+│   ├── app/rate_limit.py    # Basic limits for sensitive endpoints
 │   ├── app/rag.py           # BM25 retrieval and LLM prompt/generation
 │   ├── app/petnova_data.py  # SQLite persistence, password hashing, sessions
 │   ├── app/config.py        # Environment-based configuration
-│   ├── tests/               # Backend unit tests
+│   ├── tests/               # Backend unit and API regression tests
 │   ├── data/knowledge_base/ # Curated pet-care Markdown documents
 │   ├── requirements.txt
 │   ├── .env.example
@@ -59,7 +60,7 @@ Open http://localhost:5500. The frontend defaults to the deployed backend URL. T
 
 ## AI chat and retrieval
 
-The `POST /chat` route retrieves relevant text from `backend/data/knowledge_base/*.md` using BM25 keyword ranking, builds a prompt from retrieved passages, and calls the configured OpenAI-compatible LLM. It returns the generated answer and retrieved source passages. Retrieval quality depends on the quality and coverage of the knowledge base; the assistant is not a substitute for a licensed veterinarian.
+The `POST /chat` route retrieves relevant text from `backend/data/knowledge_base/*.md` using BM25 keyword ranking, builds a prompt from retrieved passages, and calls the configured OpenAI-compatible LLM. It returns the generated answer and retrieved source passages. Chat input is capped at 4,000 characters and an optional history is capped at 20 messages. Retrieval quality depends on the quality and coverage of the knowledge base; the assistant is not a substitute for a licensed veterinarian.
 
 ## Workspace API
 
@@ -73,11 +74,19 @@ The `POST /chat` route retrieves relevant text from `backend/data/knowledge_base
 
 Workspace requests use `Authorization: Bearer <token>`. Passwords are hashed with PBKDF2-SHA256 and session tokens are signed. Keep secrets private and use HTTPS in deployed environments.
 
+### Rate limiting
+
+The API applies per-process fixed-window limits to sensitive routes: registration (5/minute), login (10/minute), chat (20/minute), and reindex (3/minute), per client address. A blocked request returns HTTP 429 and a `Retry-After` header. These in-process counters reset when the service restarts and are not shared across workers or instances; use host/edge rate limiting for stronger production protection and verify proxy client-IP handling before relying on IP-based limits.
+
 ## Deployment and persistence
 
 The backend can be deployed with the Dockerfile and `render.yaml`; deploy the static frontend from the `frontend` directory. Configure `OPENAI_COMPATIBLE_API_KEY`, `OPENAI_COMPATIBLE_MODEL`, and `PETNOVA_AUTH_SECRET` in the backend host's environment.
 
-The Render Free database path is ephemeral. Data can be lost when the service restarts or redeploys. For a real deployment, configure `PETNOVA_DB_PATH` to a persistent disk or migrate persistence to managed PostgreSQL, and establish backups before storing important records. Restrict `ALLOWED_ORIGINS` to the frontend origin when practical.
+The Render Free database path is ephemeral. Data can be lost when the service restarts or redeploys. This is not fixed by the code changes: durable data requires a supported persistent disk or a managed database. Before switching paths, securely export and verify the current production database; a local SQLite file may not contain production records. Do not change the production DB path to a new empty file as a migration shortcut.
+
+The Render blueprint restricts `ALLOWED_ORIGINS` to `https://vetgpt-ai-hxcr.vercel.app`; update that value if the Vercel domain changes. For local development, set `ALLOWED_ORIGINS=http://localhost:5500,http://127.0.0.1:5500`. Do not use `*` for a production deployment.
+
+Vercel build-rate-limit failures are a hosting/account limit, not an application-code error. Retry after the provider's limit window resets or review the Vercel usage/plan; a successful CI test run does not itself verify a live frontend deployment.
 
 ## Tests
 
@@ -87,4 +96,4 @@ From the `backend` directory, run:
 python -m unittest discover -s tests -v
 ```
 
-Current tests cover core data-layer behavior. API-level and end-to-end tests should be expanded as the application evolves.
+The suite includes data-layer and API regression tests, including cross-account access and rate limiting. Verify CI results on the exact commit before merging, then perform a live smoke test of registration, login, pet records, health records, reminders, and AI chat.
