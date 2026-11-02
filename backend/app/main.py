@@ -3,11 +3,6 @@ VetGPT backend — FastAPI service exposing a RAG-powered pet care chat endpoint
 
 Run locally:
     uvicorn app.main:app --reload --port 8000
-
-Endpoints:
-    GET  /health          -> liveness check
-    POST /chat            -> { "message": str, "history": [...] } -> answer + sources
-    POST /reindex          -> rebuilds the FAISS index from data/knowledge_base
 """
 from typing import List, Optional
 import logging
@@ -20,6 +15,7 @@ from pydantic import BaseModel
 from app import config
 from app import rag
 from app import petnova_data as petdata
+from app.rate_limit import SensitiveEndpointRateLimitMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -33,9 +29,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=config.ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "X-Reindex-Key"],
 )
+app.add_middleware(SensitiveEndpointRateLimitMiddleware)
 
 
 class ChatMessage(BaseModel):
@@ -67,11 +64,14 @@ def health():
 def chat(req: ChatRequest):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="message must not be empty")
+    if len(req.message) > 4000:
+        raise HTTPException(status_code=413, detail="message must be 4000 characters or fewer")
+    if req.history and len(req.history) > 20:
+        raise HTTPException(status_code=422, detail="history must contain 20 messages or fewer")
 
     try:
         answer, docs = rag.answer_query(req.message)
     except Exception:
-        # Keep diagnostics in server logs, not in the public API response.
         logger.exception("Chat generation failed")
         raise HTTPException(status_code=502, detail="The AI service could not generate a response. Please try again later.")
 
@@ -81,7 +81,6 @@ def chat(req: ChatRequest):
 
 @app.post("/reindex")
 def reindex(x_reindex_key: Optional[str] = Header(default=None)):
-    # Reindexing can consume significant resources. Disable it unless configured.
     configured_key = config.REINDEX_API_KEY
     if len(configured_key) < 32:
         raise HTTPException(status_code=503, detail="Reindexing is disabled on this deployment.")
@@ -89,7 +88,6 @@ def reindex(x_reindex_key: Optional[str] = Header(default=None)):
         raise HTTPException(status_code=401, detail="Invalid reindex credentials.")
     try:
         rag.build_index()
-        # Force the in-memory vectorstore to reload on next query
         rag._vectorstore = None
         return {"status": "reindexed"}
     except Exception:
@@ -98,9 +96,6 @@ def reindex(x_reindex_key: Optional[str] = Header(default=None)):
 
 
 # --- PetNova accounts and saved pet-care workspace ---
-# This feature set is deliberately separate from /chat so the existing LLM
-# chatbot continues to work even when account features are not configured.
-
 class RegisterRequest(BaseModel):
     name: str
     email: str
