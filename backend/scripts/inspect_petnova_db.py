@@ -6,6 +6,8 @@ Usage:
 
 The report contains only table counts, ID high-water marks, integrity and
 ownership checks, file size, and a SHA-256 digest. It never prints user data.
+Use the online-backup script first; a non-empty WAL sidecar makes this report
+fail because hashing only the main file would not identify the full snapshot.
 """
 from __future__ import annotations
 
@@ -13,7 +15,6 @@ import argparse
 import hashlib
 import json
 import sqlite3
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -92,6 +93,8 @@ def inspect_database(path: Path | str) -> dict[str, Any]:
                WHERE r.user_id != p.user_id"""
         ).fetchone()[0]
 
+    wal_path = Path(str(source) + "-wal")
+    wal_bytes = wal_path.stat().st_size if wal_path.exists() else 0
     ownership_checks = {
         "health_record_owner_mismatches": int(record_owner_mismatches),
         "reminder_owner_mismatches": int(reminder_owner_mismatches),
@@ -101,12 +104,15 @@ def inspect_database(path: Path | str) -> dict[str, Any]:
         and not foreign_key_violations
         and int(duplicate_emails) == 0
         and all(value == 0 for value in ownership_checks.values())
+        and wal_bytes == 0
     )
     return {
         "ok": ok,
         "file_name": source.name,
         "file_size_bytes": source.stat().st_size,
         "sha256": _sha256(source),
+        "wal_sidecar_bytes": wal_bytes,
+        "self_contained_snapshot": wal_bytes == 0,
         "integrity_check": "ok" if integrity_ok else integrity_rows,
         "foreign_key_violation_count": len(foreign_key_violations),
         "case_insensitive_duplicate_email_groups": int(duplicate_emails),
