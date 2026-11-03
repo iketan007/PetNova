@@ -123,6 +123,21 @@ class DatabaseInspectionTests(unittest.TestCase):
         self.assertFalse(report["ok"])
         self.assertEqual(report["foreign_key_violation_count"], 1)
 
+    def test_nonempty_wal_sidecar_is_not_a_self_contained_export(self):
+        writer = sqlite3.connect(self.path)
+        self.addCleanup(writer.close)
+        writer.execute("PRAGMA journal_mode = WAL")
+        writer.execute(
+            "INSERT INTO reminders(user_id,pet_id,title,due_at) VALUES(?,?,?,?)",
+            (1, 1, "WAL pending", "2026-11-05T10:00:00"),
+        )
+        writer.commit()
+
+        report = inspect_database(self.path)
+        self.assertFalse(report["ok"])
+        self.assertFalse(report["self_contained_snapshot"])
+        self.assertGreater(report["wal_sidecar_bytes"], 0)
+
     def test_rejects_missing_database_and_incomplete_schema(self):
         with self.assertRaises(FileNotFoundError):
             inspect_database(self.path.parent / "missing.sqlite3")
